@@ -16,7 +16,7 @@
 #include <string>
 #include <tchar.h>
 
-using namespace NSPatchTestLib;
+using namespace NSResearch;
 
 #define SAFE_RELEASE(p) { if (p) { (p)->Release(); (p) = NULL; } }
 
@@ -183,7 +183,7 @@ D3DXMATERIAL* d3dxMaterials = NULL;
 float f = 0.0f;
 bool bShowMenu = true;
 
-PatchTestLib menu;
+Research menu;
 
 void TextDraw(LPD3DXFONT pFont, wchar_t* text, int X, int Y)
 {

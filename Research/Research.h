@@ -6,7 +6,7 @@
 // アイテムを左右の2列で表示する
 // 左がインベントリ、右が倉庫
 // クリックしたら右か左に移動する。確認は行わない。
-namespace NSPatchTestLib
+namespace NSResearch
 {
 class ISprite
 {
@@ -146,7 +146,7 @@ private:
 
 };
 
-class PatchTestLib
+class Research
 {
 public:
 

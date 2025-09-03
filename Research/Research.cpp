@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <tchar.h>
 
-using namespace NSPatchTestLib;
+using namespace NSResearch;
 
 static std::vector<std::wstring> split(const std::wstring& s, wchar_t delim)
 {
@@ -19,7 +19,7 @@ static std::vector<std::wstring> split(const std::wstring& s, wchar_t delim)
     return result;
 }
 
-void PatchTestLib::Init(IFont* font,
+void Research::Init(IFont* font,
                         ISoundEffect* SE,
                         ISprite* sprCursor,
                         ISprite* sprBackground,
@@ -37,7 +37,7 @@ void PatchTestLib::Init(IFont* font,
     m_SE->Init();
 }
 
-void NSPatchTestLib::PatchTestLib::Finalize()
+void NSResearch::Research::Finalize()
 {
     delete m_font;
     m_font = nullptr;
@@ -55,23 +55,23 @@ void NSPatchTestLib::PatchTestLib::Finalize()
     m_sprVBar = nullptr;
 }
 
-void NSPatchTestLib::PatchTestLib::AddTestItem(const TestItem& arg)
+void NSResearch::Research::AddTestItem(const TestItem& arg)
 {
     m_leftList.push_back(arg);
 }
 
-void NSPatchTestLib::PatchTestLib::AddQueueItem(const QueuedTestItem& arg)
+void NSResearch::Research::AddQueueItem(const QueuedTestItem& arg)
 {
     m_rightList.push_back(arg);
 }
 
-void NSPatchTestLib::PatchTestLib::ClearAll()
+void NSResearch::Research::ClearAll()
 {
     m_leftList.clear();
     m_rightList.clear();
 }
 
-void NSPatchTestLib::PatchTestLib::MoveFromInventoryToQueue(const std::wstring& id,
+void NSResearch::Research::MoveFromInventoryToQueue(const std::wstring& id,
                                                             const int subid,
                                                             const int year,
                                                             const int month,
@@ -101,7 +101,7 @@ void NSPatchTestLib::PatchTestLib::MoveFromInventoryToQueue(const std::wstring& 
     m_rightList.push_back(queItem);
 }
 
-void NSPatchTestLib::PatchTestLib::UpdateQueueItemStatus(const int index,
+void NSResearch::Research::UpdateQueueItemStatus(const int index,
                                                          const int yearStart,
                                                          const int monthStart,
                                                          const int dayStart,
@@ -125,7 +125,7 @@ void NSPatchTestLib::PatchTestLib::UpdateQueueItemStatus(const int index,
     m_rightList.at(index).SetResult(result);
 }
 
-void NSPatchTestLib::PatchTestLib::UpdateDateTime(const int year,
+void NSResearch::Research::UpdateDateTime(const int year,
                                                   const int month,
                                                   const int day,
                                                   const int hour,
@@ -135,7 +135,7 @@ void NSPatchTestLib::PatchTestLib::UpdateDateTime(const int year,
     m_CurrentDateTime = CreateDateTimeStr(year, month, day, hour, minute, second);
 }
 
-std::wstring PatchTestLib::Up()
+std::wstring Research::Up()
 {
     if (m_eFocus == eFocus::LEFT)
     {
@@ -186,7 +186,7 @@ std::wstring PatchTestLib::Up()
     return _T("");
 }
 
-std::wstring PatchTestLib::Down()
+std::wstring Research::Down()
 {
     if (m_eFocus == eFocus::LEFT)
     {
@@ -237,7 +237,7 @@ std::wstring PatchTestLib::Down()
     return _T("");
 }
 
-std::wstring PatchTestLib::Right()
+std::wstring Research::Right()
 {
     if (m_eFocus == eFocus::LEFT)
     {
@@ -247,7 +247,7 @@ std::wstring PatchTestLib::Right()
     return std::wstring();
 }
 
-std::wstring PatchTestLib::Left()
+std::wstring Research::Left()
 {
     if (m_eFocus == eFocus::RIGHT)
     {
@@ -257,7 +257,7 @@ std::wstring PatchTestLib::Left()
     return std::wstring();
 }
 
-std::wstring PatchTestLib::Into()
+std::wstring Research::Into()
 {
     std::wstring result;
     if (m_eFocus == eFocus::LEFT)
@@ -272,7 +272,7 @@ std::wstring PatchTestLib::Into()
     return result;
 }
 
-std::wstring PatchTestLib::Back()
+std::wstring Research::Back()
 {
     std::wstring result;
     result = _T("EXIT");
@@ -281,17 +281,17 @@ std::wstring PatchTestLib::Back()
     return result;
 }
 
-std::wstring NSPatchTestLib::PatchTestLib::Next()
+std::wstring NSResearch::Research::Next()
 {
     return Down();
 }
 
-std::wstring NSPatchTestLib::PatchTestLib::Previous()
+std::wstring NSResearch::Research::Previous()
 {
     return Up();
 }
 
-void PatchTestLib::CursorOn(const int x, const int y)
+void Research::CursorOn(const int x, const int y)
 {
     int previousCursor = m_leftCursor;
     int previousSelect = m_leftSelect;
@@ -450,7 +450,7 @@ void PatchTestLib::CursorOn(const int x, const int y)
     }
 }
 
-std::wstring PatchTestLib::Click(const int x, const int y)
+std::wstring Research::Click(const int x, const int y)
 {
     std::wstring result;
     int previousCursor = m_leftCursor;
@@ -538,7 +538,7 @@ std::wstring PatchTestLib::Click(const int x, const int y)
     return result;
 }
 
-void PatchTestLib::Draw()
+void Research::Draw()
 {
     // 背景
     m_sprBackground->DrawImage(0, 0);
@@ -680,7 +680,7 @@ void PatchTestLib::Draw()
     }
 }
 
-void NSPatchTestLib::PatchTestLib::UpdateCursorPos()
+void NSResearch::Research::UpdateCursorPos()
 {
     // カーソルの位置が範囲外なら範囲内に収まるように移動する。
     // リストが空の場合は、-1をセットする
@@ -717,47 +717,47 @@ void NSPatchTestLib::PatchTestLib::UpdateCursorPos()
     }
 }
 
-void NSPatchTestLib::TestItem::SetId(const std::wstring& arg)
+void NSResearch::TestItem::SetId(const std::wstring& arg)
 {
     m_id = arg;
 }
 
-std::wstring NSPatchTestLib::TestItem::GetId() const
+std::wstring NSResearch::TestItem::GetId() const
 {
     return m_id;
 }
 
-void NSPatchTestLib::TestItem::SetSubId(const int arg)
+void NSResearch::TestItem::SetSubId(const int arg)
 {
     m_idSub = arg;
 }
 
-int NSPatchTestLib::TestItem::GetSubId() const
+int NSResearch::TestItem::GetSubId() const
 {
     return m_idSub;
 }
 
-void NSPatchTestLib::TestItem::SetName(const std::wstring& arg)
+void NSResearch::TestItem::SetName(const std::wstring& arg)
 {
     m_name = arg;
 }
 
-std::wstring NSPatchTestLib::TestItem::GetName() const
+std::wstring NSResearch::TestItem::GetName() const
 {
     return m_name;
 }
 
-void NSPatchTestLib::QueuedTestItem::SetName(const std::wstring& arg)
+void NSResearch::QueuedTestItem::SetName(const std::wstring& arg)
 {
     m_name = arg;
 }
 
-std::wstring NSPatchTestLib::QueuedTestItem::GetName() const
+std::wstring NSResearch::QueuedTestItem::GetName() const
 {
     return m_name;
 }
 
-void NSPatchTestLib::QueuedTestItem::SetDateReq(const int year, const int month, const int day,
+void NSResearch::QueuedTestItem::SetDateReq(const int year, const int month, const int day,
                                                 const int hour, const int minute, const int second)
 {
     m_reqYear = year;
@@ -768,7 +768,7 @@ void NSPatchTestLib::QueuedTestItem::SetDateReq(const int year, const int month,
     m_reqSecond = second;
 }
 
-void NSPatchTestLib::QueuedTestItem::GetDateReq(int* year, int* month, int* day,
+void NSResearch::QueuedTestItem::GetDateReq(int* year, int* month, int* day,
                                                 int* hour, int* minute, int* second)
 {
     *year = m_reqYear;
@@ -779,7 +779,7 @@ void NSPatchTestLib::QueuedTestItem::GetDateReq(int* year, int* month, int* day,
     *second = m_reqSecond;
 }
 
-std::wstring NSPatchTestLib::QueuedTestItem::GetDateReqStr()
+std::wstring NSResearch::QueuedTestItem::GetDateReqStr()
 {
     return CreateDateTimeStr(m_reqYear,
                              m_reqMonth,
@@ -789,7 +789,7 @@ std::wstring NSPatchTestLib::QueuedTestItem::GetDateReqStr()
                              m_reqSecond);
 }
 
-void NSPatchTestLib::QueuedTestItem::SetDateStart(const int year, const int month, const int day,
+void NSResearch::QueuedTestItem::SetDateStart(const int year, const int month, const int day,
                                                   const int hour, const int minute, const int second)
 {
     m_startYear = year;
@@ -800,7 +800,7 @@ void NSPatchTestLib::QueuedTestItem::SetDateStart(const int year, const int mont
     m_startSecond = second;
 }
 
-void NSPatchTestLib::QueuedTestItem::GetDateStart(int* year, int* month, int* day,
+void NSResearch::QueuedTestItem::GetDateStart(int* year, int* month, int* day,
                                                   int* hour, int* minute, int* second)
 {
     *year = m_startYear;
@@ -811,7 +811,7 @@ void NSPatchTestLib::QueuedTestItem::GetDateStart(int* year, int* month, int* da
     *second = m_startSecond;
 }
 
-std::wstring NSPatchTestLib::QueuedTestItem::GetDateStartStr()
+std::wstring NSResearch::QueuedTestItem::GetDateStartStr()
 {
     return CreateDateTimeStr(m_startYear,
                              m_startMonth,
@@ -821,7 +821,7 @@ std::wstring NSPatchTestLib::QueuedTestItem::GetDateStartStr()
                              m_startSecond);
 }
 
-void NSPatchTestLib::QueuedTestItem::SetDateEnd(const int year, const int month, const int day,
+void NSResearch::QueuedTestItem::SetDateEnd(const int year, const int month, const int day,
                                                 const int hour, const int minute, const int second)
 {
     m_endYear = year;
@@ -832,7 +832,7 @@ void NSPatchTestLib::QueuedTestItem::SetDateEnd(const int year, const int month,
     m_endSecond = second;
 }
 
-void NSPatchTestLib::QueuedTestItem::GetDateEnd(int* year, int* month, int* day,
+void NSResearch::QueuedTestItem::GetDateEnd(int* year, int* month, int* day,
                                                 int* hour, int* minute, int* second)
 {
     *year = m_endYear;
@@ -843,7 +843,7 @@ void NSPatchTestLib::QueuedTestItem::GetDateEnd(int* year, int* month, int* day,
     *second = m_endSecond;
 }
 
-std::wstring NSPatchTestLib::QueuedTestItem::GetDateEndStr()
+std::wstring NSResearch::QueuedTestItem::GetDateEndStr()
 {
     return CreateDateTimeStr(m_endYear,
                              m_endMonth,
@@ -853,17 +853,17 @@ std::wstring NSPatchTestLib::QueuedTestItem::GetDateEndStr()
                              m_endSecond);
 }
 
-void NSPatchTestLib::QueuedTestItem::SetResult(const std::wstring& arg)
+void NSResearch::QueuedTestItem::SetResult(const std::wstring& arg)
 {
     m_result = arg;
 }
 
-std::wstring NSPatchTestLib::QueuedTestItem::GetResult() const
+std::wstring NSResearch::QueuedTestItem::GetResult() const
 {
     return m_result;
 }
 
-std::wstring NSPatchTestLib::CreateDateTimeStr(const int y, const int M, const int d, const int h, const int m, const int s)
+std::wstring NSResearch::CreateDateTimeStr(const int y, const int M, const int d, const int h, const int m, const int s)
 {
     if (y == 0)
     {
