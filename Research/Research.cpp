@@ -717,6 +717,22 @@ void NSResearch::Research::UpdateCursorPos()
     }
 }
 
+void NSResearch::Research::OnDeviceLost()
+{
+    m_sprBackground->OnDeviceLost();
+    m_sprCursor->OnDeviceLost();
+    m_sprVBar->OnDeviceLost();
+    m_font->OnDeviceLost();
+}
+
+void NSResearch::Research::OnDeviceReset()
+{
+    m_sprBackground->OnDeviceReset();
+    m_sprCursor->OnDeviceReset();
+    m_sprVBar->OnDeviceReset();
+    m_font->OnDeviceReset();
+}
+
 void NSResearch::TestItem::SetId(const std::wstring& arg)
 {
     m_id = arg;
