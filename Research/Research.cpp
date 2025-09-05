@@ -719,18 +719,48 @@ void NSResearch::Research::UpdateCursorPos()
 
 void NSResearch::Research::OnDeviceLost()
 {
-    m_sprBackground->OnDeviceLost();
-    m_sprCursor->OnDeviceLost();
-    m_sprVBar->OnDeviceLost();
-    m_font->OnDeviceLost();
+    if (m_sprBackground != nullptr)
+    {
+        m_sprBackground->OnDeviceLost();
+    }
+
+    if (m_sprCursor != nullptr)
+    {
+        m_sprCursor->OnDeviceLost();
+    }
+
+    if (m_sprVBar != nullptr)
+    {
+        m_sprVBar->OnDeviceLost();
+    }
+
+    if (m_font != nullptr)
+    {
+        m_font->OnDeviceLost();
+    }
 }
 
 void NSResearch::Research::OnDeviceReset()
 {
-    m_sprBackground->OnDeviceReset();
-    m_sprCursor->OnDeviceReset();
-    m_sprVBar->OnDeviceReset();
-    m_font->OnDeviceReset();
+    if (m_sprBackground != nullptr)
+    {
+        m_sprBackground->OnDeviceReset();
+    }
+
+    if (m_sprCursor != nullptr)
+    {
+        m_sprCursor->OnDeviceReset();
+    }
+
+    if (m_sprVBar != nullptr)
+    {
+        m_sprVBar->OnDeviceReset();
+    }
+
+    if (m_font != nullptr)
+    {
+        m_font->OnDeviceReset();
+    }
 }
 
 void NSResearch::TestItem::SetId(const std::wstring& arg)
